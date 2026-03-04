@@ -8,7 +8,7 @@
             List<BingoJatekos> jatekosok = Beolvasas();
             Console.WriteLine($"4. feladat: Játékosok száma: {jatekosok.Count}");
             Console.WriteLine("7. feladat: Kihúzott számok:");
-            Huzas(jatekosok);
+            Huzas(jatekosok, Beolvasas());
         }
         static List<BingoJatekos> Beolvasas()
         {
@@ -31,9 +31,10 @@
             }
             return jatekosok;
         }
-        static void Huzas(List<BingoJatekos> jatekosok)
+        static void Huzas(List<BingoJatekos> jatekosok1, List<BingoJatekos> jatekosok2)
         {
             List<string> huzottSzamok = [];
+            List<string> nyertesNeve = [];
             bool game = true;
             int counter = 1;
             do
@@ -44,16 +45,51 @@
                     Console.Write($"{counter}.->{huzottSzam}  ");
                     counter++;
                     huzottSzamok.Add(huzottSzam);
-                    foreach (BingoJatekos jatekos in jatekosok)
+                    foreach (BingoJatekos jatekos in jatekosok1)
                     {
                         jatekos.SorsoltSzamotJelol(huzottSzam);
                         if (jatekos.BingoEll())
                         {
+                            nyertesNeve.Add(jatekos.Nev);
                             game = false;
                         }
                     }
                 }
             } while (game);
+            Console.WriteLine("8. feladat: Lehetséges nyertesek: ");
+            for (int i = 0; i < jatekosok2.Count; i++)
+            {
+                if (!nyertesNeve.Contains(jatekosok2[i].Nev))
+                {
+                    jatekosok2.Remove(jatekosok2[i]);
+                    i--;
+                }
+            }
+            foreach (BingoJatekos jatekos in jatekosok2)
+            { 
+                for (int i = 0; i < 5; i++)
+                {
+                    for (int j = 0; i < 5; i++)
+                    {
+                        if (!huzottSzamok.Contains(jatekos.Kartya[i, j]) && jatekos.Kartya[i, j] != "X")
+                        {
+                            jatekos.Kartya[i, j] = "0";
+                        }
+                    }
+                }
+            }
+            foreach (BingoJatekos jatekos in jatekosok2)
+            {
+                Console.WriteLine(jatekos.Nev);
+                for (int i = 0; i < 5; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        Console.Write($"{jatekos.Kartya[i, j]} ");
+                    }
+                    Console.WriteLine();
+                }
+            }
         }
     }
 }

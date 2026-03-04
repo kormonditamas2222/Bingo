@@ -16,9 +16,8 @@ namespace Bingo
             this.nev = nev;
             this.kartya = kartya;
         }
-        public string[,] Kartya { get => kartya; }
-        public string Nev { get => nev; set => nev = value; }
-
+        public string[,] Kartya { get => kartya; set => kartya = value; }
+        public string Nev { get => nev; }
         public void SorsoltSzamotJelol(string szam)
         {
             for (int i = 0; i < 5; i++)
