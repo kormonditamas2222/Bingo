@@ -17,5 +17,7 @@ namespace Bingo
             this.kartya = kartya;
         }
         public string[,] Kartya { get => kartya; }
+
+        
     }
 }

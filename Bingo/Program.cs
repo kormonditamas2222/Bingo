@@ -4,19 +4,8 @@
     {
         static void Main(string[] args)
         {
-            List<BingoJatekos> ja = Beolvasas();
-            foreach (BingoJatekos jatekos in ja)
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    for (int j=0; j< 5; j++)
-                    {
-                        Console.Write(jatekos.Kartya[i,j] + " ");
-                    }
-                    Console.WriteLine();
-                }
-                Console.WriteLine();
-            }
+            List<BingoJatekos> jatekosok = Beolvasas();
+            Console.WriteLine($"4. feladat: Játékosok száma: {jatekosok.Count}");
         }
         static List<BingoJatekos> Beolvasas()
         {
