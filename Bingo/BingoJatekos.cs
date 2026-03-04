@@ -18,6 +18,18 @@ namespace Bingo
         }
         public string[,] Kartya { get => kartya; }
 
-        
+        public void SorsoltSzamotJelol(string szam)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (this.kartya[i,j] == szam)
+                    {
+                        this.kartya[i, j] = "X";
+                    }
+                }
+            }
+        }
     }
 }
